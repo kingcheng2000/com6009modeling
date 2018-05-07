@@ -1,5 +1,8 @@
 function ecolab(size,nc,nh,nsteps,fmode,outImages)
 
+% Set the random seed
+rng(1)
+
 %ECO_LAB  agent-based predator-prey model, developed for
 %demonstration purposes only for University of Sheffield module
 %COM3001/6006/6009
