@@ -76,7 +76,7 @@ tot_cohes_force = tot_cohes_force + agt.calc_cohesion_force(nearby_herring);
 if align_count > 0
     tot_align_force = align_sum./align_count;
 else
-    tot_align_force = [0.0,0.0]
+    tot_align_force = [0.0,0.0];
 end
 % tot_sep_force
 % tot_align_force
@@ -108,6 +108,7 @@ if movement_vect == [0.0, 0.0]
     rand_x = rand_between(min_explore, max_explore);
     rand_y = rand_between(min_explore, max_explore);
     explore_force = [rand_x, rand_y];
+    
     movement_vect = steer(agt.vel, explore_force);
 end
 % BUG(Pierre): Something is going wrong in steer, where the first value is
