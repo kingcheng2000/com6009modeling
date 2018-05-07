@@ -10,7 +10,7 @@ function [agt]=migrate(agt,cn)
 %degrees at it will try again (up to 8 times)
 %modified by D Walker 11/4/08
 
-global IT_STATS N_IT ENV_DATA MESSAGES
+global IT_STATS N_IT ENV_DATA MESSAGES PARAM
 
 %N_IT is current iteration number
 %IT_STATS is data structure containing statistics on model at each
@@ -81,19 +81,11 @@ end
 % tot_cohes_force
 
 tot_hunt_force = agt.calc_hunt_force( nearby_copepods );
-    
 
-hunt_weight = 60;
-sep_weight = 50;
-align_weight = 25;
-cohes_weight = 10;
-
-% This part is to make it so that they always sum to 1:
-total_weights = hunt_weight + sep_weight + align_weight + cohes_weight;
-hunt_weight = hunt_weight/total_weights;
-sep_weight = sep_weight/total_weights;
-align_weight = align_weight/total_weights;
-cohes_weight = cohes_weight/total_weights;
+hunt_weight = PARAM.hunt_weight;
+sep_weight = PARAM.sep_weight;
+align_weight = PARAM.align_weight;
+cohes_weight = PARAM.cohes_weight;
 
 overall_force = (sep_weight * tot_sep_force) + (align_weight * tot_align_force) + (cohes_weight * tot_cohes_force) + (hunt_weight * tot_hunt_force);
 % BUG(Pierre): Looks like some of these vels are getting set to 0 at the

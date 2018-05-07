@@ -36,6 +36,7 @@ classdef herring          %declares herring object
                     % TODO: Set this randomly? Between 6 and 21.9
                     h.body_size = 14;
                     h.sense_radius = 5 * h.body_size;
+                 
                 otherwise
                     error('Invalid no. of input arguments for herring')
             end
