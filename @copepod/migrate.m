@@ -30,7 +30,8 @@ global ENV_DATA IT_STATS N_IT
 pos=agt.pos;                         %extract current position 
 % cpos=round(pos);                     %round up position to nearest grid point   
 
-explore_speed = agt.max_speed * 100;
+% TODO: Tune this value
+explore_speed = agt.max_speed;
 min_explore = -explore_speed;
 max_explore = explore_speed;
 rand_x = rand_between(min_explore, max_explore);

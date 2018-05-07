@@ -81,8 +81,15 @@ function plot_results(agent,nsteps,fmode,outImages)
         set(hs,'SpecularStrength',0.1);
         hold on
         
-        
-
+        % TODO: Implement better sense radius algo.
+        for cn=1:length(agent)
+            if isa(agent{cn},'herring')              %choose plot colour depending on agent type
+                pos=get(agent{cn},'pos');
+                ho=plot(pos(1),pos(2),'g.');
+                sense_radius = get(agent{cn}, 'sense_radius');
+                set(ho,'MarkerSize', sense_radius*2);
+            end
+        end
         for cn=1:length(agent)                          %cycle through each agent in turn
             if typ(cn)>0                                %only plot live agents
                 pos=get(agent{cn},'pos');               %extract current position    

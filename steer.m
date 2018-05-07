@@ -8,6 +8,8 @@ max_turning_rate = 10; % In degrees per iteration
 max_accel = 7;
 max_speed = 15;
 
+
+
 curr_speed = norm(curr_vect);
 desired_speed = norm(desired_vect);
 
@@ -21,19 +23,11 @@ else
 end
 
 if angle_diff > max_turning_rate
-    
-    current_angle = atand(curr_vect(2)/curr_vect(1));
-    desired_angle = atand(desired_vect(2)/desired_vect(1));
-    
-    angle_diff = max_turning_rate;
-    % TODO(Pierre): How do you tell whether to add or subtract angle_diff?
-    if desired_angle < current_angle
-        new_angle = current_angle - angle_diff;
-    else
-        new_angle = current_angle + angle_diff;
-    end
-    
-    desired_vect = [(desired_speed * cosd(new_angle)), (desired_speed * sind(new_angle))];
+    % This gives the fraction of the difference between the two vectors to
+    % move. If t = 0.5, the vector is half way between the two vectors
+    t = max_turning_rate/angle_diff;
+    desired_vect = [((1-t) * curr_vect(1)) + (t * desired_vect(1)),((1-t) * curr_vect(2)) + (t * desired_vect(2))];
+    desired_speed = norm(desired_vect);
 end
 
 % Avoiding divide by zero mistakes
@@ -56,8 +50,6 @@ final_accel = speed_diff * max_accel;
 output_speed = curr_speed + final_accel;
 
 movement_vect = output_speed * unit_vect;
-
-
 
 end
 
