@@ -32,13 +32,11 @@ nearby_copepods = extract_local_agents(agt,sense_radius,1);
 % TODO(Pierre): We need something like MESSAGES.Vect, which contains all
 % the vectors for the 
 
-% TODO(Pierre): Test that this is actually working!
-
 % TODO(Pierre): We might need to do 3 for loops. Like maybe the separation
 % force only comes into play with agents closer than 3, wheras align comes
 % into play with agents closer than 5, wheras cohes comes in closer than 7,
 % or something.
-sep_radius = 0.5 * sense_radius;
+sep_radius = PARAM.herring_desired_sep;
 align_radius = 0.7 * sense_radius;
 cohes_radius = 1 * sense_radius;
 

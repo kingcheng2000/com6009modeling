@@ -20,6 +20,9 @@ for cn=1:n
         if isa(curr,'herring')
             [curr]=eat(curr,cn);               %eating rules (copepods eat food, herring eat copepods)
         end
+        if isa(curr,'copepod')
+            [curr]=escape(curr,cn);               %eating rules (copepods eat food, herring eat copepods)
+        end
         curr=migrate(curr,cn);              %if no food was eaten, then migrate in search of some
        agent{cn}=curr;                          %up date cell array with modified agent data structure
     end

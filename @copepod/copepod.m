@@ -1,9 +1,11 @@
 classdef copepod   %declares copepod object
+
     properties    %define copepod properties (parameters) 
         pos;
         vel;
         max_speed;
         burst_speed;
+        sense_radius;
     end
     methods                         %note that this class definition mfile contains only the constructor method!
                                     %all additional member functions associated with this class are included as separate mfiles in the @copepod folder. 
@@ -15,6 +17,7 @@ classdef copepod   %declares copepod object
                 %pos - vector containg x,y, co-ords 
 
                 %Modified by Martin Bayley on 29/01/13
+                global PARAM;
 
 
                 switch nargin           %Use switch statement with nargin,varargin contructs to overload constructor methods
@@ -35,6 +38,7 @@ classdef copepod   %declares copepod object
                         c.vel=varargin{2};             %number of kilometres copepod can migrate in 1 day
                         c.max_speed=varargin{3};        %number of iterations since copepod last reproduced.
                         c.burst_speed=varargin{4};
+                        c.sense_radius = PARAM.copepod_sense_radius;
                     otherwise
                        error('Invalid no. of input arguments')
                 end

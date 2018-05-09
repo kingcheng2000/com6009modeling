@@ -1,6 +1,7 @@
 function [ output_force ] = calc_align_force( self, target, align_dist )
-%UNTITLED6 Summary of this function goes here
-%   Detailed explanation goes here
+% A function that calculates the alignment force applied to the herring by
+% a single target
+
 global MESSAGES
     
     target_pos = MESSAGES.pos(target,:);

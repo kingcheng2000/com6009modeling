@@ -16,5 +16,4 @@ global ENV_DATA
 ENV_DATA.shape='square';
 ENV_DATA.units='cm';
 ENV_DATA.bm_size=size;
-ENV_DATA.food=floor(50*ones(size,size));        %distribute food in km x km squares 
-ENV_DATA.food(round(0.6*size):round(0.8*size),round(0.6*size):round(0.8*size))=0;   %generate patch where there is no food
+

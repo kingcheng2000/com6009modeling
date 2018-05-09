@@ -54,8 +54,8 @@ function plot_results(agent,nsteps,fmode,outImages)
         subplot(3,1,2),plot((1:N_IT+1),nh(1:N_IT+1),col{2});
         subplot(3,1,2),axis([0 nsteps 0 1.1*max(nh)]);
         subplot(3,1,3),cla
-        subplot(3,1,3),plot((1:N_IT+1),tot_food(1:N_IT+1),'m-');
-        subplot(3,1,3),axis([0 nsteps 0 tot_food(1)]);
+%         subplot(3,1,3),plot((1:N_IT+1),tot_food(1:N_IT+1),'m-');
+%         subplot(3,1,3),axis([0 nsteps 0 tot_food(1)]);
         subplot(3,1,1),title('No. live copepods');
         subplot(3,1,2),title('No. live herring');
         subplot(3,1,3),title('Total food');
@@ -71,7 +71,7 @@ function plot_results(agent,nsteps,fmode,outImages)
         set(f3,'Position',[0.05 0.05 0.66 0.66]);
         v=(1:bm);
         [X,Y]=meshgrid(v);
-        Z=ENV_DATA.food;
+        Z=ones(bm,bm);
         H=zeros(bm,bm);
         hs=surf(Y,X,H,Z);               %plot food distribution on plain background
         cm=colormap('gray');
@@ -82,14 +82,14 @@ function plot_results(agent,nsteps,fmode,outImages)
         hold on
         
         % TODO: Implement better sense radius algo.
-        for cn=1:length(agent)
-            if isa(agent{cn},'herring')              %choose plot colour depending on agent type
-                pos=get(agent{cn},'pos');
-                ho=plot(pos(1),pos(2),'g.');
-                sense_radius = get(agent{cn}, 'sense_radius');
-                set(ho,'MarkerSize', sense_radius*2);
-            end
-        end
+%         for cn=1:length(agent)
+%             if isa(agent{cn},'herring')              %choose plot colour depending on agent type
+%                 pos=get(agent{cn},'pos');
+%                 ho=plot(pos(1),pos(2),'g.');
+%                 sense_radius = get(agent{cn}, 'sense_radius');
+%                 set(ho,'MarkerSize', sense_radius);
+%             end
+%         end
         for cn=1:length(agent)                          %cycle through each agent in turn
             if typ(cn)>0                                %only plot live agents
                 pos=get(agent{cn},'pos');               %extract current position    

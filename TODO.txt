@@ -1,0 +1,14 @@
+Stuff to do
+
+
+--- CODE ---
+Comment code
+Add copepod jump behaviour
+Add some normal distribution function
+
+
+--- EXPERIMENT ---
+Code graph plotting
+Design Experiment
+
+--- REPORT ---
