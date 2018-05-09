@@ -102,9 +102,8 @@ function plot_results(agent,nsteps,fmode,outImages)
                     set(ho,'MarkerSize',30);
                     
                     % Drawing the arrow
-                    arrow_end = [pos(1) + vel(1), pos(2) + vel(2)];
+                    arrow_end = [vel(1), vel(2)];
                     drawArrow(pos, arrow_end);
-                    hold on
                 end
             end
         end

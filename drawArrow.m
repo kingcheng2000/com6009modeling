@@ -1,7 +1,17 @@
-function [] = drawArrow( x,y )
+function [] = drawArrow( start_xy, end_xy )
 %UNTITLED4 Summary of this function goes here
 %   Detailed explanation goes here
-quiver( x(1),y(1),x(2)-x(1),y(2)-y(1),0 )
+
+arrow_scaling = 0.1;
+norm_end_xy = end_xy/arrow_scaling;
+
+x = start_xy(1);
+y = start_xy(2);
+u = norm_end_xy(1);
+v = norm_end_xy(2);
+
+quiver( x, y, u, v )
+hold on
 
 end
 

@@ -21,3 +21,8 @@ global PARAM
     PARAM.sep_weight = sep_weight/total_weights
     PARAM.align_weight = align_weight/total_weights
     PARAM.cohes_weight = cohes_weight/total_weights
+    
+    
+    PARAM.herring_max_turn_rate = 30; % In degrees per iteration
+    PARAM.herring_max_accel = 10;
+    PARAM.herring_max_speed = 30;

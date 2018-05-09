@@ -9,7 +9,7 @@ function [steer_result] = seek(agt, target_pos)
     desired_vec = desired_vec / norm(desired_vec);
 
     desired_vec = desired_vec * agt.max_speed;
-    steer_result = steer(agt.vel, desired_vec);
+    steer_result = agt.steer(desired_vec);
 
 end
 

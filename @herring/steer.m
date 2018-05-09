@@ -1,14 +1,15 @@
-function [ movement_vect ] = steer(curr_vect, desired_vect)
+function [ movement_vect ] = steer(self, desired_vect)
 %STEER This function limits the ability of the herring to change direction
 % or velocity instantly.
 %   Detailed explanation goes here
 
-% Probably should get this from the agent
-max_turning_rate = 10; % In degrees per iteration
-max_accel = 7;
-max_speed = 15;
+global PARAM
 
+max_turning_rate = PARAM.herring_max_turn_rate; % In degrees per iteration
+max_accel = PARAM.herring_max_accel;
+max_speed = self.max_speed;
 
+curr_vect = self.vel;
 
 curr_speed = norm(curr_vect);
 desired_speed = norm(desired_vect);

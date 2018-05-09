@@ -94,8 +94,7 @@ overall_force = (sep_weight * tot_sep_force) + (align_weight * tot_align_force) 
 
 
 
-% BUG(Pierre): They always seem to go in the positive direction? Why?
-movement_vect = steer(agt.vel, overall_force);
+movement_vect = agt.steer(overall_force);
 
 % If it has no reason to go anywhere, it will explore randomly.
 if movement_vect == [0.0, 0.0]
@@ -107,7 +106,7 @@ if movement_vect == [0.0, 0.0]
     rand_y = rand_between(min_explore, max_explore);
     explore_force = [rand_x, rand_y];
     
-    movement_vect = steer(agt.vel, explore_force);
+    movement_vect = agt.steer(explore_force);
 end
 % BUG(Pierre): Something is going wrong in steer, where the first value is
 % never negative.
