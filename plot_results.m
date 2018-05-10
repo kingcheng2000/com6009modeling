@@ -24,11 +24,6 @@ function plot_results(agent,nsteps,fmode,outImages)
     nc=IT_STATS.tot_c;
     nh=IT_STATS.tot_h;
     disp(strcat('Iteration = ',num2str(N_IT)))
-    disp(strcat('No. new copepods = ',num2str(IT_STATS.div_c(N_IT+1))))
-    disp(strcat('No. new herring = ',num2str(IT_STATS.div_h(N_IT+1))))
-    disp(strcat('No. agents migrating = ',num2str(IT_STATS.mig(N_IT+1))))
-    disp(strcat('No. copepods dying = ',num2str(IT_STATS.died_c(N_IT+1))))
-    disp(strcat('No. herring dying = ',num2str(IT_STATS.died_h(N_IT+1))))
     disp(strcat('No. copepods eaten = ',num2str(IT_STATS.eaten(N_IT+1))))
 
     %plot line graphs of agent numbers and remaining food
@@ -41,7 +36,6 @@ function plot_results(agent,nsteps,fmode,outImages)
         col{1}='r-';                   %set up colours that will represent different cell types red for rabbits, blue for foxes
         col{2}='b-';
 
-        tot_food=IT_STATS.tfood;       %total food remaining
         n=nc(N_IT+1)+nh(N_IT+1);             %current agent number
         f2=figure(2);
         set(f2,'Units','Normalized');
@@ -53,12 +47,8 @@ function plot_results(agent,nsteps,fmode,outImages)
         subplot(3,1,2),cla
         subplot(3,1,2),plot((1:N_IT+1),nh(1:N_IT+1),col{2});
         subplot(3,1,2),axis([0 nsteps 0 1.1*max(nh)]);
-        subplot(3,1,3),cla
-%         subplot(3,1,3),plot((1:N_IT+1),tot_food(1:N_IT+1),'m-');
-%         subplot(3,1,3),axis([0 nsteps 0 tot_food(1)]);
         subplot(3,1,1),title('No. live copepods');
         subplot(3,1,2),title('No. live herring');
-        subplot(3,1,3),title('Total food');
         drawnow
 
         %create plot of agent locations. 

@@ -1,4 +1,4 @@
-function ecolab(size,nc,nh,nsteps,fmode,outImages, her_sep)
+function ecolab(size,nc,nh,nsteps,her_sep,fmode,outImages)
 %ECO_LAB  agent-based predator-prey model, developed for
 %demonstration purposes only for University of Sheffield module
 %COM3001/6006/6009
@@ -6,12 +6,13 @@ function ecolab(size,nc,nh,nsteps,fmode,outImages, her_sep)
 %AUTHOR Dawn Walker d.c.walker@sheffield.ac.uk
 %Created April 2008
 
-%ecolab(size,nc,nh,nsteps)
-%size = size of model environmnet in km (sugested value for plotting
-%purposes =50)
-%nc - initial number of copepod agents
-%nh - initial number of herring agents
-%nsteps - number of iterations required
+% ecolab(size,nc,nh,nsteps,her_sep,fmode,outImages)
+% size = size of model environmnet in cm (sugested value for plotting
+% purposes = 500)
+% nc - initial number of copepod agents
+% nh - initial number of herring agents
+% nsteps - number of iterations required
+% her_sep - distance that herring will attempt to separate from each other
 
 %definition of global variables:
 %N_IT - current iteration number
@@ -29,10 +30,10 @@ rng(1)
 
     global N_IT IT_STATS ENV_DATA CONTROL_DATA
 
-    if nargin == 4
+    if nargin == 5
         fmode=true;
         outImages=false;
-    elseif nargin == 5
+    elseif nargin == 6
         outImages=false;
     end
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

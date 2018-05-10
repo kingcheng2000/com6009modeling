@@ -24,7 +24,7 @@ function [nagent,nn]=update_messages(agent,prev_n,temp_n)
 %ENV_DATA - is a data structure containing information about the model
    %environment
 
-global MESSAGES IT_STATS N_IT ENV_DATA
+global MESSAGES IT_STATS N_IT
 
 nagent=cell(1,temp_n);                  %initialise list for surviving agents
 nn=0;                                   %tracks number of surviving agents
