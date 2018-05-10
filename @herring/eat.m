@@ -42,7 +42,8 @@ if length(local)>0
     else
         nrst = local; %If length is not more than 1, must be exactly 1
     end
-    IT_STATS.eaten(N_IT+1)=IT_STATS.eaten(N_IT+1)+1; %update model statistics
+
+    IT_STATS.eaten(N_IT+1) = IT_STATS.eaten(N_IT+1) + 1; %update model statistics
     MESSAGES.dead(nrst)=1;       %send message to copepod so it knows it's dead!
 end
 

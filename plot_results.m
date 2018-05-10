@@ -41,14 +41,14 @@ function plot_results(agent,nsteps,fmode,outImages)
         set(f2,'Units','Normalized');
         set(f2,'Position',[0.5 0.5 0.45 0.4]);
 
-        subplot(3,1,1),cla
-        subplot(3,1,1),plot((1:N_IT+1),nc(1:N_IT+1),col{1});
-        subplot(3,1,1),axis([0 nsteps 0 1.1*max(nc)]);
-        subplot(3,1,2),cla
-        subplot(3,1,2),plot((1:N_IT+1),nh(1:N_IT+1),col{2});
-        subplot(3,1,2),axis([0 nsteps 0 1.1*max(nh)]);
-        subplot(3,1,1),title('No. live copepods');
-        subplot(3,1,2),title('No. live herring');
+        subplot(2,1,1),cla
+        subplot(2,1,1),plot((1:N_IT+1),nc(1:N_IT+1),col{1});
+        subplot(2,1,1),axis([0 nsteps 0 1.1*max(nc)]);
+        subplot(2,1,2),cla
+        subplot(2,1,2),plot((1:N_IT+1),nh(1:N_IT+1),col{2});
+        subplot(2,1,2),axis([0 nsteps 0 1.1*max(nh)]);
+        subplot(2,1,1),title('No. live copepods');
+        subplot(2,1,2),title('No. live herring');
         drawnow
 
         %create plot of agent locations. 
