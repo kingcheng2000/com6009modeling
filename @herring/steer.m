@@ -1,7 +1,7 @@
 function [ movement_vect ] = steer(self, desired_vect)
 %STEER This function limits the ability of the herring to change direction
 % or velocity instantly.
-%   Detailed explanation goes here
+
 
 global PARAM
 

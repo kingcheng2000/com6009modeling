@@ -13,6 +13,7 @@ function initialise_results(nc,nh,nsteps)
                 'tot_h',[zeros(1,nsteps+1)]);
             
  
+ IT_STATS.eaten(1) = 0;
  IT_STATS.tot(1)=nc+nh;
  IT_STATS.tot_c(1)=nc;
  IT_STATS.tot_h(1)=nh;

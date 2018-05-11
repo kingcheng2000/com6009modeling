@@ -1,6 +1,6 @@
 function [steer_result] = seek(agt, target_pos)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+% Takes an agent, finds their location, outputs a new direction based on an
+% attempt to get towards that position.
 
     origin_pos = agt.pos;
     

@@ -7,7 +7,7 @@ global MESSAGES
     target_pos = MESSAGES.pos(target,:);
 
     diff = self.pos - target_pos;
-     dist = sqrt(sum(diff.^2));
+    dist = sqrt(sum(diff.^2));
     
     if dist < align_dist
         output_force = MESSAGES.vel(target,:);

@@ -96,7 +96,7 @@ movement_vect = agt.steer(overall_force);
 
 % If it has no reason to go anywhere, it will explore randomly.
 if movement_vect == [0.0, 0.0]
-    explore_speed = agt.max_speed * 0.5;
+    explore_speed = agt.max_speed * 0.1;
     min_explore = -explore_speed;
     max_explore = explore_speed;
     

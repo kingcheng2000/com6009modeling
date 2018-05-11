@@ -22,7 +22,7 @@ function plot_results(agent,nsteps,fmode,outImages)
 
     %write results to the screen
     nc=IT_STATS.tot_c;
-    nh=IT_STATS.tot_h;
+    nh=IT_STATS.eaten;
     disp(strcat('Iteration = ',num2str(N_IT)))
     disp(strcat('No. copepods eaten = ',num2str(IT_STATS.eaten(N_IT+1))))
 
@@ -34,7 +34,7 @@ function plot_results(agent,nsteps,fmode,outImages)
         %fmode can be turned off in the command line - see ecolab documentation
 
         col{1}='r-';                   %set up colours that will represent different cell types red for rabbits, blue for foxes
-        col{2}='b-';
+        col{2}='b.-';
 
         n=nc(N_IT+1)+nh(N_IT+1);             %current agent number
         f2=figure(2);
@@ -46,9 +46,14 @@ function plot_results(agent,nsteps,fmode,outImages)
         subplot(2,1,1),axis([0 nsteps 0 1.1*max(nc)]);
         subplot(2,1,2),cla
         subplot(2,1,2),plot((1:N_IT+1),nh(1:N_IT+1),col{2});
-        subplot(2,1,2),axis([0 nsteps 0 1.1*max(nh)]);
+        if max(nh) == 0
+            eaten_lim = 1
+        else
+            eaten_lim = max(nh)
+        end
+        subplot(2,1,2),axis([0 nsteps 0 1.1*eaten_lim]);
         subplot(2,1,1),title('No. live copepods');
-        subplot(2,1,2),title('No. live herring');
+        subplot(2,1,2),title('No. copepods eaten each iteration');
         drawnow
 
         %create plot of agent locations. 
@@ -61,7 +66,7 @@ function plot_results(agent,nsteps,fmode,outImages)
         set(f3,'Position',[0.05 0.05 0.66 0.66]);
         v=(1:bm);
         [X,Y]=meshgrid(v);
-        Z=ones(bm,bm);
+        Z=zeros(bm,bm);
         H=zeros(bm,bm);
         hs=surf(Y,X,H,Z);               %plot food distribution on plain background
         cm=colormap('gray');

@@ -1,4 +1,4 @@
-function ecolab(size,nc,nh,nsteps,her_sep,fmode,outImages)
+function ecolab(size,nc,nh,nsteps,her_sep, hunt_only, num_repeats, fmode,outImages)
 %ECO_LAB  agent-based predator-prey model, developed for
 %demonstration purposes only for University of Sheffield module
 %COM3001/6006/6009
@@ -24,53 +24,56 @@ function ecolab(size,nc,nh,nsteps,her_sep,fmode,outImages)
 % Set the random seed
 rng(1)
 
-    %clear any global variables/ close figures from previous simulations
-    clear global
-    close all
+for repeat = 1:num_repeats
 
-    global N_IT IT_STATS ENV_DATA CONTROL_DATA
+        %clear any global variables/ close figures from previous simulations
+        clear global
+        close all
 
-    if nargin == 5
-        fmode=true;
-        outImages=false;
-    elseif nargin == 6
-        outImages=false;
-    end
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %MODEL INITIALISATION
-    create_control;                     %sets up the parameters to control fmode (speed up the code during experimental testing
-    create_params(her_sep);                      %sets the parameters for this simulation
-    create_environment(size);           %creates environment data structure, given an environment size
-    random_selection(1);                %randomises random number sequence (NOT agent order). If input=0, then simulation should be identical to previous for same initial values
-    [agent]=create_agents(nc,nh);       %create nc copepod and nh herring agents and places them in a cell array called 'agents'
-    create_messages(nc,nh,agent);       %sets up the initial message lists
-    initialise_results(nc,nh,nsteps);   %initilaises structure for storing results
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %MODEL EXECUTION
-    for n_it=1:nsteps                   %the main execution loop
-        N_IT=n_it;
-        [agent,n]=agnt_solve(agent);     %the function which calls the rules
-        plot_results(agent,nsteps,fmode,outImages); %updates results figures and structures
-        %mov(n_it)=getframe(fig3);
-        if n<=0                          %if no more agents, then stop simulation
-            break
-            disp('General convergence criteria satisfied - no agents left alive! > ')
+        global N_IT IT_STATS ENV_DATA CONTROL_DATA
+
+        if nargin == 7
+            fmode=true;
+            outImages=false;
+        elseif nargin == 8
+            outImages=false;
         end
-        if fmode == true                                       % if fastmode is used ...
-           for test_l=1 : 5                                    % this checks the total number agents and adjusts the CONTROL_DATA.fmode_display_every variable accoringly to help prevent extreme slowdown
-               if n > CONTROL_DATA.fmode_control(1,test_l)     % CONTROL_DATA.fmode_control contains an array of thresholds for agent numbers and associated fmode_display_every values
-                   CONTROL_DATA.fmode_display_every = CONTROL_DATA.fmode_control(2,test_l);
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %MODEL INITIALISATION
+        create_control;                     %sets up the parameters to control fmode (speed up the code during experimental testing
+        create_params(her_sep, hunt_only);                      %sets the parameters for this simulation
+        create_environment(size);           %creates environment data structure, given an environment size
+        random_selection(1);                %randomises random number sequence (NOT agent order). If input=0, then simulation should be identical to previous for same initial values
+        [agent]=create_agents(nc,nh);       %create nc copepod and nh herring agents and places them in a cell array called 'agents'
+        create_messages(nc,nh,agent);       %sets up the initial message lists
+        initialise_results(nc,nh,nsteps);   %initilaises structure for storing results
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %MODEL EXECUTION
+        for n_it=1:nsteps                   %the main execution loop
+            N_IT=n_it;
+            [agent,n]=agnt_solve(agent);     %the function which calls the rules
+            plot_results(agent,nsteps,fmode,outImages); %updates results figures and structures
+            %mov(n_it)=getframe(fig3);
+            if n<=0                          %if no more agents, then stop simulation
+                break
+                disp('General convergence criteria satisfied - no agents left alive! > ')
+            end
+            if fmode == true                                       % if fastmode is used ...
+               for test_l=1 : 5                                    % this checks the total number agents and adjusts the CONTROL_DATA.fmode_display_every variable accoringly to help prevent extreme slowdown
+                   if n > CONTROL_DATA.fmode_control(1,test_l)     % CONTROL_DATA.fmode_control contains an array of thresholds for agent numbers and associated fmode_display_every values
+                       CONTROL_DATA.fmode_display_every = CONTROL_DATA.fmode_control(2,test_l);
+                   end
                end
-           end
-            if IT_STATS.tot_c(n_it) == 0             %fastmode convergence - all copepods eaten - all herring will now die
-                disp('Fast mode convergence criteria satisfied - no copepods left alive! > ')
-                break
-            end  
-            if IT_STATS.tot_h(n_it) == 0             %fastmode convergence - all herring starved - copepods will now proliferate unchecked until all vegitation is eaten
-                disp('Fast mode convergence criteria satisfied - no herring left alive ! > ')
-                break
+                if IT_STATS.tot_c(n_it) == 0             %fastmode convergence - all copepods eaten - all herring will now die
+                    disp('Fast mode convergence criteria satisfied - no copepods left alive! > ')
+                    break
+                end  
+                if IT_STATS.tot_h(n_it) == 0             %fastmode convergence - all herring starved - copepods will now proliferate unchecked until all vegitation is eaten
+                    disp('Fast mode convergence criteria satisfied - no herring left alive ! > ')
+                    break
+                end
             end
         end
-    end
-eval(['save results_nr_' num2str(nc) '_nf_' num2str(nh) '.mat IT_STATS ENV_DATA' ]);
-clear global
+    eval(['save results_nc_' num2str(nc) '_nh_' num2str(nh) '_sep_' num2str(her_sep) '_hunt_' num2str(hunt_only) '_r_' num2str(repeat) '.mat IT_STATS ENV_DATA' ]);
+    clear global
+end

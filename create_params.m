@@ -1,4 +1,4 @@
-function create_params(her_sep)
+function create_params(her_sep, hunt_only)
 
 
 %PARAM - structure containing values of all parameters governing agent
@@ -9,10 +9,17 @@ global PARAM
     PARAM.C_SPD=2;         %speed of movement - units per itn (copepod)
     PARAM.H_SPD=5;         %speed of movement - units per itn (herring)
 
-    hunt_weight = 30;
-    sep_weight = 70;
-    align_weight = 40;
-    cohes_weight = 50;
+    if hunt_only == false
+        hunt_weight = 90;
+        sep_weight = 70;
+        align_weight = 40;
+        cohes_weight = 50;
+    else
+        hunt_weight = 100;
+        sep_weight = 0;
+        align_weight = 0;
+        cohes_weight = 0;
+    end
 
     % This part is to make it so that they always sum to 1:
     total_weights = hunt_weight + sep_weight + align_weight + cohes_weight;

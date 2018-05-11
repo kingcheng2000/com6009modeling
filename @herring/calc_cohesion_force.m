@@ -1,6 +1,5 @@
 function [ output_force ] = calc_cohesion_force( self, other_nearby_agts )
-%UNTITLED6 Summary of this function goes here
-%   Detailed explanation goes here
+% This function calculates the cohesion force between all nearby agents.
 global MESSAGES
 
     neighbor_sum = [0.0, 0.0];
