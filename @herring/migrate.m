@@ -107,25 +107,18 @@ agt.vel = movement_vect;
 
 agt.pos = agt.pos + agt.vel;
 
-% TODO(Pierre): Some function that Steers based on force. Like it
-% shouldn't turn too fast or go faster than herring can go.
-% Desired velocity, current velocity
-% new_vel = steer(agt.vel, overall_force)
-% pos = agt.pos + new_vel
-  
-% bm=ENV_DATA.bm_size;   
-% vel=agt.speed;   %herring migration speed in units per iteration - this is equal to the food search radius
-% pos=agt.pos;     %extract current position 
-% 
-% mig=0;
-% cnt=1;
-% dir=rand*2*pi;              %herring has been unable to find food, so chooses a random direction to move in
-% 
-% 
-% while mig==0&cnt<=8        %herring has up to 8 attempts to migrate (without leaving the edge of the model)
-%     
-%     npos(1)=pos(1)+vel*cos(dir);        %new x co-ordinate
-%     npos(2)=pos(2)+vel*sin(dir);        %new y co-ordinate
+% Amount of distance outside of main area after we consider the herring to
+% be unable to find food (and so kill them off to make computation faster
+threshold = 0.1;
+upper_limit = ENV_DATA.bm_size * (1 + threshold);
+lower_limit = 1 - (ENV_DATA.bm_size * threshold);
+npos = agt.pos;
+if npos(1) < upper_limit & npos(2) < upper_limit & npos(1) >= lower_limit & npos(2) >= lower_limit
+    inside = 1;
+else
+    MESSAGES.dead(cn)=1;
+end
+
 %     if npos(1)<ENV_DATA.bm_size&npos(2)<ENV_DATA.bm_size&npos(1)>=1&npos(2)>=1   %check that herring has not left edge of model - correct if so.
 %        mig=1;
 %     end
