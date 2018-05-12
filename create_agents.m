@@ -27,8 +27,8 @@ MESSAGES.pos=[cloc;hloc];
 fast_copes = 0.15;
 slow_copes = 0.05;
 
-fast_burst = 0.45;
-slow_burst = 0.30;
+fast_burst = 11;
+slow_burst = 7;
 %Bursts 0.45cm/s for 0.02s Decay till 0.3cm/s over 0.02s, Then 0.45cm/s for
 %0.02s Decay till 0.15cm/s over 0.02s, Then 0.25cm/s for 0.02s Decay till swimming speed over 0.02s 
 

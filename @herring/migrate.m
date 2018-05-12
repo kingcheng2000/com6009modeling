@@ -5,10 +5,7 @@ function [agt]=migrate(agt,cn)
 %cn - current agent number
 
 %SUMMARY OF HERRING MIGRATE RULE
-%If a herring has not eaten, it will pick a random migration direction
-%If it will leave the edge of the model, the direction is incremented by 45
-%degrees at it will try again (up to 8 times)
-%modified by D Walker 11/4/08
+
 
 global IT_STATS N_IT ENV_DATA MESSAGES PARAM
 
@@ -86,11 +83,11 @@ align_weight = PARAM.align_weight;
 cohes_weight = PARAM.cohes_weight;
 
 overall_force = (sep_weight * tot_sep_force) + (align_weight * tot_align_force) + (cohes_weight * tot_cohes_force) + (hunt_weight * tot_hunt_force);
-% BUG(Pierre): Looks like some of these vels are getting set to 0 at the
-% start for some reason? Maybe getting the indexes wrong/confused with
-% copepods?
 
-
+% tot_sep_force
+% tot_align_force
+% tot_cohes_force
+% tot_hunt_force
 
 movement_vect = agt.steer(overall_force);
 
@@ -106,8 +103,6 @@ if movement_vect == [0.0, 0.0]
     
     movement_vect = agt.steer(explore_force);
 end
-% BUG(Pierre): Something is going wrong in steer, where the first value is
-% never negative.
 agt.vel = movement_vect;
 
 agt.pos = agt.pos + agt.vel;

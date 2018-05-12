@@ -47,9 +47,9 @@ function plot_results(agent,nsteps,fmode,outImages)
         subplot(2,1,2),cla
         subplot(2,1,2),plot((1:N_IT+1),nh(1:N_IT+1),col{2});
         if max(nh) == 0
-            eaten_lim = 1
+            eaten_lim = 1;
         else
-            eaten_lim = max(nh)
+            eaten_lim = max(nh);
         end
         subplot(2,1,2),axis([0 nsteps 0 1.1*eaten_lim]);
         subplot(2,1,1),title('No. live copepods');
