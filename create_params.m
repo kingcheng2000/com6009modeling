@@ -10,10 +10,10 @@ global PARAM
     PARAM.H_SPD=5;         %speed of movement - units per itn (herring)
 
     if hunt_only == false
-        hunt_weight = 10;
+        hunt_weight = 60;
         sep_weight = 600;
-        align_weight = 40;
-        cohes_weight = 400;
+        align_weight = 30;
+        cohes_weight = 20;
     else
         hunt_weight = 100;
         sep_weight = 0;
