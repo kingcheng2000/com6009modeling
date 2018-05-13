@@ -109,7 +109,7 @@ agt.pos = agt.pos + agt.vel;
 
 % Amount of distance outside of main area after we consider the herring to
 % be unable to find food (and so kill them off to make computation faster
-threshold = 0.1;
+threshold = 0.2;
 upper_limit = ENV_DATA.bm_size * (1 + threshold);
 lower_limit = 1 - (ENV_DATA.bm_size * threshold);
 npos = agt.pos;
