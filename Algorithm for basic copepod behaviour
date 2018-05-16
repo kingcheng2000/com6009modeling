@@ -1,0 +1,39 @@
+
+1.Initialization settings, including population size N, initial position of each copepod, copepod visual field, step, congestion 
+factor δ, and repetition number Try−number;
+
+2.Calculate the fitness value of each initial copepod school, and assign the best copepod status and its value to the bulletin board;
+
+3.Evaluate each individual and select the behavior to be performed, including foraging, gathering, following, and random behavior;
+
+4.Perform the behavior of copepod, update itself, generate new copepod school;
+copepod
+5.Evaluate all individuals. If a body is better than the bulletin board, the bulletin board is updated to the individual;
+
+6.The algorithm ends when the optimal solution on the bulletin board reaches within the satisfaction error bound or reaches the 
+upper limit of the iterations, otherwise it proceeds to step 3.
+
+
+
+
+The bulletin board means:
+It is the place where the individual state of the optimal copepod is recorded. Each copepod compares its current 
+state with the state recorded in the bulletin board after performing one iteration. If it is better than the state in the bulletin 
+board. It updates the state in the bulletin board with its own state. Otherwise, the state of the bulletin board remains unchanged.
+When the iteration of the entire algorithm is over, the bulletin board value is the optimal solution.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
